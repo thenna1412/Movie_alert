@@ -1,12 +1,14 @@
 let userEmail = "";
 
-// Bind email input
-document.addEventListener("DOMContentLoaded", () => {
+// -------------------------------
+// Email input binding
+// -------------------------------
+document.addEventListener("DOMContentLoaded", function () {
   const emailInput = document.getElementById("email-input");
   const emailContainer = document.getElementById("email-container");
 
   if (emailInput) {
-    emailInput.addEventListener("input", (e) => {
+    emailInput.addEventListener("input", function (e) {
       userEmail = e.target.value.trim().toLowerCase();
       emailContainer.innerHTML = userEmail
         ? `Welcome 👋 <b>${userEmail}</b>`
@@ -15,18 +17,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// -------------------------------
 // Submit movie alert
+// -------------------------------
 function postAlienEncounter() {
   const movieInput = document.getElementById("city-post-input");
   const movie = movieInput.value.trim();
 
   if (!movie) {
-    Swal.fire("Warning", "Enter movie name", "warning");
+    Swal.fire("Warning", "Please enter a movie name", "warning");
     return;
   }
 
   if (!userEmail) {
-    Swal.fire("Warning", "Enter email", "warning");
+    Swal.fire("Warning", "Please enter your email", "warning");
     return;
   }
 
@@ -35,16 +39,18 @@ function postAlienEncounter() {
   );
 
   $.ajax({
-    url: "https://YOUR-CATALYST-URL/server/movie_alert/datastore",
+    // ✅ REAL Catalyst URL (FIXED)
+    url: "https://movie-alert-60047185658.development.catalystserverless.in/server/movie_alert/datastore",
     type: "POST",
     contentType: "application/json",
+
     data: JSON.stringify({
       Movie_name: movie,
       Emails: userEmail,
       isPreferredTheatre: isPreferred
     }),
 
-    success: (data) => {
+    success: function (data) {
       if (data.status === "exists") {
         Swal.fire("Info", "This email already exists for this movie", "info");
       } else if (data.status === "added") {
@@ -54,12 +60,12 @@ function postAlienEncounter() {
         Swal.fire("Info", data.message || "Done", "info");
       }
 
-      console.log("Response:", data);
+      console.log("API Response:", data);
     },
 
-    error: (err) => {
-      Swal.fire("Error", "Request failed", "error");
-      console.error(err);
+    error: function (err) {
+      Swal.fire("Error", "Server not reachable", "error");
+      console.error("API Error:", err);
     }
   });
 }
