@@ -85,19 +85,6 @@ function postAlienEncounter() {
     return;
   }
 
-  // Ensure we have an email to send
-  if (!userEmail || !userEmail.trim()) {
-    Swal.fire("Warning", "Please enter an email address.", "warning");
-    return;
-  }
-
-  // Basic email validation
-  const emailRegex = /^\S+@\S+\.\S+$/;
-  if (!emailRegex.test(userEmail)) {
-    Swal.fire("Warning", "Please enter a valid email address.", "warning");
-    return;
-  }
-
   const isPreferred = JSON.parse(
     document.querySelector('input[name="theatreType"]:checked').value
   );
@@ -109,10 +96,7 @@ function postAlienEncounter() {
     data: JSON.stringify({
       Movie_name: movie,
       isPreferredTheatre: isPreferred,
-      // send as array so backend can append when same movie exists
-      Emails: [userEmail],
-      // hint to backend to append the email if movie exists
-      appendEmail: true
+      Emails: userEmail
     }),
 
     success: function (data) {
