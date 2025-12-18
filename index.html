@@ -96,6 +96,8 @@
     <div class="form-box">
       <h4 class="text-center mb-3">🎬 Movie Alert</h4>
 
+     
+
       <input
         type="text"
         id="city-post-input"
@@ -125,6 +127,14 @@
           All Theatres
         </label>
       </div>
+
+       <!-- NEW: optional email input for public users -->
+       <input
+       type="email"
+       id="email-input"
+       class="form-control mb-3"
+       placeholder="Enter email (optional)"
+     />
 
       <button class="btn btn-primary w-100" onclick="postAlienEncounter(); return false;">
         Submit

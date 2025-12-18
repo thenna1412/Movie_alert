@@ -1,35 +1,20 @@
-// let userEmail = "";
+let userEmail = "";
 
-// // On page load → get logged-in user email (non-blocking, no redirect)
-// document.addEventListener("DOMContentLoaded", function () {
-//   if (typeof catalyst !== "undefined" && catalyst.auth && catalyst.auth.isUserAuthenticated) {
-//     catalyst.auth
-//       .isUserAuthenticated()
-//       .then((result) => {
-//         userEmail = result.content?.email_id || "";
-//         const emailContainer = document.getElementById("email-container");
-//         if (emailContainer && userEmail) emailContainer.innerHTML = `Welcome 👋 <b>${userEmail}</b>`;
-//       })
-//       .catch((err) => {
-//         // Do NOT redirect to /__catalyst/auth/login — keep the page public
-//         console.warn("isUserAuthenticated failed (running in public mode):", err);
-//       });
-//   } else {
-//     console.warn("Catalyst SDK not available; running in public mode.");
-//   } 
-// });
+// Keep #email-input in sync with userEmail
+document.addEventListener("DOMContentLoaded", function () {
+  const emailInput = document.getElementById("email-input");
+  const emailContainer = document.getElementById("email-container");
+  if (emailInput) {
+    if (userEmail) emailInput.value = userEmail;
 
-// // Logout
-// function logout() {
-//     // Sign out but avoid redirecting users to the Catalyst login page
-//     try {
-//       if (typeof catalyst !== "undefined" && catalyst.auth && catalyst.auth.signOut) {
-//         catalyst.auth.signOut("/"); // redirect to homepage after signout
-//       }
-//     } catch (e) {
-//       console.error("Sign-out failed:", e);
-//     }
-// }
+    emailInput.addEventListener("input", function (e) {
+      userEmail = e.target.value.trim();
+      if (emailContainer) {
+        emailContainer.innerHTML = userEmail ? `Welcome 👋 <b>${userEmail}</b>` : `Welcome 👋`;
+      }
+    });
+  }
+});
 
 // Submit movie alert
 function postAlienEncounter() {
