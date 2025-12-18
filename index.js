@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   } else {
     console.warn("Catalyst SDK not available; running in public mode.");
-  }
+  } 
 });
 
 // Logout
