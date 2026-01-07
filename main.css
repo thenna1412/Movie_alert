@@ -1,0 +1,11 @@
+#theatre-dropdown-button:hover{
+    color: inherit;
+     background-color:inherit;
+     border-color: inherit; 
+}
+
+#theatre-dropdown-button:first-child:active{
+     color: inherit;
+     background-color:inherit;
+     border-color: inherit;
+}

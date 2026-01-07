@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://static.zohocdn.com/catalyst/sdk/js/4.5.0/catalystWebSDK.js"></script>
+<script src="/__catalyst/sdk/init.js"></script>
+<script>
+    const config = {
+      service_url : "/index.html"
+    };
+    catalyst.auth.signIn("login", config);
+  </script>
+</head>
+<style>
+    #login {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffffff, #f8e4ff);
+    }
+</style>
+<body>
+    <div id="login"></div>
+</body>
+</html>
