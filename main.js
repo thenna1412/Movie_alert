@@ -3,8 +3,7 @@
 let userEmail = "";
 
 // ⚡ Catalyst serverless function URL
-const SERVER_URL =
-  "https://movie-alert-60047185658.development.catalystserverless.in/server/movie_alert/datastore";
+const SERVER_URL = "https://movie-alert-60047185658.development.catalystserverless.in/server/movie_alert/datastore";
 
 /* =========================================================
    🔐 AUTH + INITIAL LOAD
